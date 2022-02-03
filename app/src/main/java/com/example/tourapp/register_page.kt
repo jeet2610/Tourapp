@@ -1,7 +1,9 @@
 package com.example.tourapp
 
 import android.app.Activity
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -18,7 +20,7 @@ import com.google.firebase.auth.PhoneAuthProvider
 import java.util.concurrent.TimeUnit
 
 
-class student_login : Fragment() {
+class register_page : Fragment() {
 
     private lateinit var auth: FirebaseAuth
     private var storedVerificationId: String? = ""
@@ -26,48 +28,60 @@ class student_login : Fragment() {
     private lateinit var callbacks: PhoneAuthProvider.OnVerificationStateChangedCallbacks
     lateinit var  phoneNumber : String
 
+    lateinit var  sign_intxt : TextView;
+
+    private lateinit var phone_Number : EditText;
+    lateinit var  register : Button ;
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
 
-        }
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
 
         val view : View = inflater.inflate(R.layout.fragment_register_page, container, false)
+        auth = FirebaseAuth.getInstance()
 
-        val sign_intxt : TextView = view.findViewById(R.id.Sign_in)
+    sign_intxt  = view.findViewById(R.id.Sign_in)
 
-        val phone_Number : EditText = view.findViewById(R.id.u_phone)
-        val register : Button = view.findViewById(R.id.verification)
+    phone_Number  = view.findViewById(R.id.u_phone)
+      register = view.findViewById(R.id.verification)
 
-        phoneNumber = phone_Number.toString()
+
+
         auth.useAppLanguage()
 
 
 
+return view
+
+
+
+
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         register.setOnClickListener {
-
-
+            phoneNumber = phone_Number.text.toString()
+            Log.d(TAG, "onCreateView: number Register $phoneNumber")
+            val action = register_pageDirections.actionRegisterPageToVerificationPage(phoneNumber)
+            it.findNavController().navigate(action)
         }
 
 
 
         sign_intxt.setOnClickListener {
-            it.findNavController().navigate(R.id.verification_page)
+            it.findNavController().navigate(R.id.login_otp_page)
         }
-
-
-        return view
     }
-
 
 
 }

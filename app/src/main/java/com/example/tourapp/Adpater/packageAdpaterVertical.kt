@@ -19,14 +19,15 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.firestore.FirebaseFirestore
 
 
-class packageAdpater(options: FirestoreRecyclerOptions<package_model> ) :
-    FirestoreRecyclerAdapter<package_model, packageAdpater.ViewHolder>(options) {
+class packageAdpaterVertical(options: FirestoreRecyclerOptions<package_model> ) :
+    FirestoreRecyclerAdapter<package_model, packageAdpaterVertical.ViewHolder>(options) {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
         var pakcage_Card = itemView.findViewById<CardView>(R.id.package_card)
-        var package_image = itemView.findViewById<ImageView>(R.id.package_img)
-        var pacakge_name = itemView.findViewById<TextView>(R.id.package_name)
+        var package_image = itemView.findViewById<ImageView>(R.id.package_img_vertical)
+        var pacakge_name = itemView.findViewById<TextView>(R.id.package_name_vertical)
+        var package_des = itemView.findViewById<TextView>(R.id.description)
 
 
 
@@ -34,7 +35,7 @@ class packageAdpater(options: FirestoreRecyclerOptions<package_model> ) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
-        return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.package_card, parent, false))
+        return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.package_card_vertical, parent, false))
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int, model: package_model) {
@@ -47,6 +48,8 @@ class packageAdpater(options: FirestoreRecyclerOptions<package_model> ) :
 
 
         holder.pacakge_name?.text = model.name!!
+
+        holder.package_des.text = model.disp
 
 
     }

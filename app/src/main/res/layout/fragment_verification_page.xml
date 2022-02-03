@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:background="@color/background_col"
     tools:context=".verification_page"
-    android:padding="15sp">
+    android:padding="15sp"
+    tools:ignore="MissingClass">
 
 
     <TextView
@@ -36,108 +37,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
+    <in.aabhasjindal.otptextview.OtpTextView
+        android:id="@+id/otp_view"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:orientation="horizontal"
-        android:padding="10dp"
+        android:layout_marginTop="16dp"
+        android:textColor="#000"
+        app:bar_enabled="true"
+        app:bar_height="2dp"
+        app:height="40dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.482"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6">
+        app:layout_constraintTop_toBottomOf="@+id/textView6"
+        app:length="6"
 
-
-        <EditText
-            android:id="@+id/otp_edit_box1"
-            android:layout_width="40dp"
-            android:layout_height="55dp"
-
-            android:layout_weight="1"
-            android:background="@drawable/otp_editbox"
-            android:gravity="center"
-            android:inputType="number"
-            android:maxLength="1"
-            android:textSize="30sp"
-            tools:layout_editor_absoluteX="64dp"
-            tools:layout_editor_absoluteY="238dp" />
-
-        <EditText
-            android:id="@+id/otp_edit_box2"
-            android:layout_width="40dp"
-            android:layout_height="55dp"
-            android:layout_marginLeft="8dp"
-            android:layout_weight="1"
-            android:background="@drawable/otp_editbox"
-            android:gravity="center"
-            android:inputType="number"
-            android:maxLength="1"
-            android:textSize="30sp"
-            tools:layout_editor_absoluteX="290dp"
-            tools:layout_editor_absoluteY="238dp" />
-
-        <EditText
-            android:id="@+id/otp_edit_box3"
-            android:layout_width="40dp"
-            android:layout_height="55dp"
-            android:layout_weight="1"
-            android:layout_marginLeft="8dp"
-            android:background="@drawable/otp_editbox"
-            android:gravity="center"
-            android:inputType="number"
-            android:maxLength="1"
-            android:textSize="30sp"
-            tools:layout_editor_absoluteX="141dp"
-            tools:layout_editor_absoluteY="238dp" />
-
-        <EditText
-            android:id="@+id/otp_edit_box4"
-            android:layout_width="40dp"
-            android:layout_height="55dp"
-            android:layout_weight="1"
-            android:layout_marginLeft="8dp"
-            android:background="@drawable/otp_editbox"
-            android:gravity="center"
-            android:inputType="number"
-            android:maxLength="1"
-            android:textSize="30sp"
-            tools:layout_editor_absoluteX="213dp"
-            tools:layout_editor_absoluteY="238dp" />
-
-        <EditText
-            android:id="@+id/otp_edit_box5"
-            android:layout_width="40dp"
-            android:layout_height="55dp"
-            android:layout_weight="1"
-            android:background="@drawable/otp_editbox"
-            android:gravity="center"
-            android:layout_marginLeft="8dp"
-            android:inputType="number"
-            android:maxLength="1"
-            android:textSize="30sp"
-            tools:layout_editor_absoluteX="213dp"
-            tools:layout_editor_absoluteY="238dp" />
-
-        <EditText
-            android:id="@+id/otp_edit_box6"
-            android:layout_width="40dp"
-            android:layout_height="55dp"
-            android:layout_weight="1"
-            android:background="@drawable/otp_editbox"
-            android:gravity="center"
-            android:layout_marginLeft="8dp"
-            android:inputType="number"
-            android:maxLength="1"
-            android:textSize="30sp"
-            tools:layout_editor_absoluteX="213dp"
-            tools:layout_editor_absoluteY="238dp" />
-
-
-
-
-    </LinearLayout>
-
+        app:otp_text_size="24dp"
+        app:width="40dp" />
 
     <TextView
         android:id="@+id/textView7"
@@ -149,7 +65,7 @@
         android:textColor="@color/teal_700"
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+        app:layout_constraintTop_toBottomOf="@+id/otp_view" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -161,7 +77,7 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+        app:layout_constraintTop_toBottomOf="@+id/otp_view" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/Next_to_Dashboard"

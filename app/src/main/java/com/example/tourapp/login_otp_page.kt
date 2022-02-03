@@ -20,7 +20,7 @@ import android.content.Intent as Intent1
 
 
 class login_otp_page : Fragment() {
-    // TODO: Rename and change types of parameters
+
 
 
     lateinit var  mauth : FirebaseAuth

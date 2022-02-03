@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/register_page"
-        android:name="com.example.tourapp.student_login"
+        android:name="com.example.tourapp.register_page"
         android:label="fragment_Register_page"
         tools:layout="@layout/fragment_register_page" >
         <action
@@ -33,7 +33,7 @@
             app:destination="@id/dashboard_page" />
 
         <argument
-            android:name="myArg"
+            android:name="phoneNumber"
             app:argType="string" />
 
 
@@ -51,11 +51,9 @@
         tools:ignore="ExtraText">
         <action
             android:id="@+id/action_login_otp_page_to_verification_page"
-            app:destination="@id/verification_page"/>
-        <argument
-            android:name="myArg"
-            app:argType="string" />
-            />
+            app:destination="@id/verification_page"/><![CDATA[
+        />
+    ]]>
     </fragment>
     <fragment
         android:id="@+id/tour_details_page"

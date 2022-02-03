@@ -1,39 +1,61 @@
 package com.example.tourapp
 
+import `in`.aabhasjindal.otptextview.OTPListener
+import `in`.aabhasjindal.otptextview.OtpTextView
 import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
+import android.widget.Toast.LENGTH_LONG
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
-import com.google.firebase.auth.PhoneAuthCredential
-import com.google.firebase.auth.PhoneAuthProvider
+import androidx.navigation.fragment.navArgs
+import com.google.firebase.FirebaseException
+import com.google.firebase.auth.*
+import java.util.*
+import java.util.concurrent.TimeUnit
+
 
 class verification_page : Fragment() {
-    // TODO: Rename and change types of parameters
 
-        lateinit var  args : String
-        lateinit var  et_otp1 : EditText
-        lateinit var  et_otp2 : EditText
-        lateinit var  et_otp3 : EditText
-        lateinit var  et_otp4 : EditText
-        lateinit var  et_otp5 : EditText
-        lateinit var  et_otp6 : EditText
 
-        val auth : FirebaseAuth = FirebaseAuth.getInstance()
+    private val args: verification_pageArgs by navArgs()
+
+
+    lateinit var otpTextView: OtpTextView
+
+    lateinit var mauth: FirebaseAuth
+    lateinit var mcallback: PhoneAuthProvider.OnVerificationStateChangedCallbacks
+    lateinit var next_to_dashboard: Button
+     var otpNum=""
+    var VerificationId = ""
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-         arguments?.let {
-            args  = verification_pageArgs.fromBundle(it).toString()
 
+        mcallback = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+
+            override fun onVerificationCompleted(credential: PhoneAuthCredential) {
+                view?.findNavController()?.navigate(R.id.dashboard_page)
+
+            }
+
+            override fun onVerificationFailed(e: FirebaseException) {
+                Log.d("otp faild", "otp failderd ${e.localizedMessage}")
+            }
+
+            override fun onCodeSent(
+                verificationId: String,
+                token: PhoneAuthProvider.ForceResendingToken
+            ) {
+                VerificationId = verificationId
+
+            }
         }
     }
 
@@ -41,42 +63,36 @@ class verification_page : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        mauth = FirebaseAuth.getInstance()
+        val view: View = inflater.inflate(R.layout.fragment_verification_page, container, false)
 
-        val view : View = inflater.inflate(R.layout.fragment_verification_page, container, false)
 
-        val next_to_dashboard : Button = view.findViewById(R.id.Next_to_Dashboard)
 
-        et_otp1 = view.findViewById(R.id.otp_edit_box1)
-        et_otp2 = view.findViewById(R.id.otp_edit_box2)
-        et_otp3 = view.findViewById(R.id.otp_edit_box3)
-        et_otp4 = view.findViewById(R.id.otp_edit_box4)
-        et_otp5 = view.findViewById(R.id.otp_edit_box5)
-        et_otp6 = view.findViewById(R.id.otp_edit_box6)
 
-        next_to_dashboard.setOnClickListener {
+        otpTextView = view.findViewById(R.id.otp_view);
 
-            //it.findNavController().navigate(R.id.dashboard_page)
 
-            if(et_otp1.text.toString().isEmpty()  ||
-                et_otp2.text.toString().isEmpty() ||
-                et_otp3.text.toString().isEmpty() ||
-                et_otp4.text.toString().isEmpty() ||
-                et_otp5.text.toString().isEmpty() ||
-                et_otp6.text.toString().isEmpty() ){
+        next_to_dashboard = view.findViewById(R.id.Next_to_Dashboard)
 
-                Toast.makeText(this.requireContext(),"opt is not valid",Toast.LENGTH_LONG).show()
 
-            }else if(args != null){
+        Log.d(TAG, "onCreateView number: ${args.phoneNumber.toString()}")
+        optsend(args.phoneNumber)
 
-               val code : String  =  et_otp1.text.toString() + et_otp2.text.toString() +et_otp3.text.toString() +et_otp4.text.toString()
-                et_otp5.text.toString()+et_otp6.text.toString()
+        otpTextView.otpListener = object : OTPListener {
+            override fun onInteractionListener() {
 
-                val credential = PhoneAuthProvider.getCredential(args!! , code)
-
-                signInWithPhoneAuthCredential(credential)
             }
 
+            override fun onOTPComplete(otp: String) {
+                // fired when user has entered the OTP fully.
+                Log.d(TAG, "onOTPComplete: $otp")
+                otpNum = otp
+
+            }
         }
+
+
+
 
 
 
@@ -86,8 +102,36 @@ class verification_page : Fragment() {
         return view
     }
 
+    override fun onStart() {
+        super.onStart()
+
+
+
+        next_to_dashboard.setOnClickListener {
+
+            next_to_dashboard.setOnClickListener(View.OnClickListener {
+                if(VerificationId.isNotEmpty()){
+
+                    Log.d(TAG, "onCreateView: ${VerificationId}${otpNum}")
+                    val credential = PhoneAuthProvider.getCredential(VerificationId, otpNum)
+                    signInWithPhoneAuthCredential(credential)
+                } else{
+                    Toast.makeText(this.requireContext(),"try Again",LENGTH_LONG).show()
+                }
+
+            })
+
+
+
+
+
+
+
+        }
+    }
+
     private fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential) {
-        auth.signInWithCredential(credential)
+        mauth.signInWithCredential(credential)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
@@ -108,4 +152,23 @@ class verification_page : Fragment() {
             }
     }
 
+    fun optsend(number :String){
+
+
+
+        val options = PhoneAuthOptions.newBuilder(mauth)
+            .setPhoneNumber("+91$number")       // Phone number to verify
+            .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
+            .setActivity(this.requireActivity())                 // Activity (for callback binding)
+            .setCallbacks(mcallback)          // OnVerificationStateChangedCallbacks
+            .build()
+        PhoneAuthProvider.verifyPhoneNumber(options)
+
+
+    }
+
+
+
+
 }
+
