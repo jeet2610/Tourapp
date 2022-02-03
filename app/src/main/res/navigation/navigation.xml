@@ -42,7 +42,11 @@
         android:id="@+id/dashboard_page"
         android:name="com.example.tourapp.dashboard_page"
         android:label="fragment_dashboard_page"
-        tools:layout="@layout/fragment_dashboard_page" />
+        tools:layout="@layout/fragment_dashboard_page" >
+        <action
+            android:id="@+id/action_dashboard_page_to_tour_details_page"
+            app:destination="@id/tour_details_page" />
+    </fragment>
     <fragment
         android:id="@+id/login_otp_page"
         android:name="com.example.tourapp.login_otp_page"
@@ -59,5 +63,9 @@
         android:id="@+id/tour_details_page"
         android:name="com.example.tourapp.tour_details_page"
         android:label="fragment_tour_details_page"
-        tools:layout="@layout/fragment_tour_details_page" />
+        tools:layout="@layout/fragment_tour_details_page" >
+        <argument
+            android:name="packageDetail"
+            app:argType="com.example.tourapp.model.package_model" />
+    </fragment>
 </navigation>

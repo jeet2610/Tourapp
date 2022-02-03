@@ -19,7 +19,7 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.firestore.FirebaseFirestore
 
 
-class packageAdpaterVertical(options: FirestoreRecyclerOptions<package_model> ) :
+class packageAdpaterVertical (options: FirestoreRecyclerOptions<package_model>,  val onclick: onClick ) :
     FirestoreRecyclerAdapter<package_model, packageAdpaterVertical.ViewHolder>(options) {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
@@ -51,6 +51,15 @@ class packageAdpaterVertical(options: FirestoreRecyclerOptions<package_model> ) 
 
         holder.package_des.text = model.disp
 
+        holder.pakcage_Card.setOnClickListener{
+            onclick.onClickPackage(model)
+        }
+
 
     }
+
+}
+
+interface onClick{
+    fun onClickPackage(packageModel: package_model)
 }

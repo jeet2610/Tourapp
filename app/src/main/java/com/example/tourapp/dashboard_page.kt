@@ -7,9 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.OrientationHelper.HORIZONTAL
 import androidx.recyclerview.widget.RecyclerView
+import com.example.tourapp.Adpater.onClick
 import com.example.tourapp.Adpater.packageAdpater
 import com.example.tourapp.Adpater.packageAdpaterVertical
 import com.example.tourapp.model.package_model
@@ -19,7 +21,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 
 
-class dashboard_page : Fragment() {
+class dashboard_page : Fragment() ,onClick{
 
     private lateinit var adapter: packageAdpater;
     private lateinit var adapterVertical: packageAdpaterVertical;
@@ -93,7 +95,7 @@ class dashboard_page : Fragment() {
             .setQuery(query, package_model::class.java)
             .build();
 
-        adapterVertical = packageAdpaterVertical(options)
+        adapterVertical = packageAdpaterVertical(options,this)
         recyclerViewVertical.layoutManager = LinearLayoutManager(activity,RecyclerView.VERTICAL,false)
         recyclerViewVertical.adapter = adapterVertical;
 
@@ -106,6 +108,11 @@ class dashboard_page : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setUpRecyclerView()
         setUpRecyclerViewVertical()
+    }
+
+    override fun onClickPackage(packageModel: package_model) {
+        val action = dashboard_pageDirections.actionDashboardPageToTourDetailsPage(packageModel)
+      requireView().findNavController().navigate(action)
     }
 }
 
