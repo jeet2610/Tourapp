@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/home_page">
+
+    <fragment
+        android:id="@+id/home_page"
+        android:name="com.example.tourapp.home_page"
+        android:label="fragment_home_page"
+        tools:layout="@layout/fragment_home_page" >
+        <action
+            android:id="@+id/action_home_page_to_register_page"
+            app:destination="@id/register_page" />
+    </fragment>
+    <fragment
+        android:id="@+id/register_page"
+        android:name="com.example.tourapp.student_login"
+        android:label="fragment_Register_page"
+        tools:layout="@layout/fragment_register_page" >
+        <action
+            android:id="@+id/action_register_page_to_verification_page"
+            app:destination="@id/verification_page" />
+    </fragment>
+    <fragment
+        android:id="@+id/verification_page"
+        android:name="com.example.tourapp.verification_page"
+        android:label="fragment_verification_page"
+        tools:layout="@layout/fragment_verification_page" >
+        <action
+            android:id="@+id/action_verification_page_to_dashboard_page"
+            app:destination="@id/dashboard_page" />
+
+        <argument
+            android:name="myArg"
+            app:argType="string" />
+
+
+    </fragment>
+    <fragment
+        android:id="@+id/dashboard_page"
+        android:name="com.example.tourapp.dashboard_page"
+        android:label="fragment_dashboard_page"
+        tools:layout="@layout/fragment_dashboard_page" />
+    <fragment
+        android:id="@+id/login_otp_page"
+        android:name="com.example.tourapp.login_otp_page"
+        android:label="fragment_login_otp_page"
+        tools:layout="@layout/fragment_login_otp_page"
+        tools:ignore="ExtraText">
+        <action
+            android:id="@+id/action_login_otp_page_to_verification_page"
+            app:destination="@id/verification_page"/>
+        <argument
+            android:name="myArg"
+            app:argType="string" />
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/tour_details_page"
+        android:name="com.example.tourapp.tour_details_page"
+        android:label="fragment_tour_details_page"
+        tools:layout="@layout/fragment_tour_details_page" />
+</navigation>
