@@ -1,6 +1,8 @@
 package com.example.tourapp
 
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,9 +13,13 @@ import android.widget.TextView
 import androidx.navigation.NavArgs
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
+import com.example.tourapp.model.booking_model
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class tour_details_page : Fragment() {
@@ -27,6 +33,10 @@ class tour_details_page : Fragment() {
     lateinit var  addbtn : ImageView
     lateinit var  minbtn : ImageView
     lateinit var  counttxt : TextView
+
+    lateinit var auth: FirebaseAuth
+
+    lateinit var BookModel : booking_model
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,7 +58,27 @@ class tour_details_page : Fragment() {
         minbtn = view.findViewById(R.id.counterminus)
         counttxt = view.findViewById(R.id.countertext)
 
+        auth = FirebaseAuth.getInstance()
 
+        /*firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                // User logged in already or has just logged in.
+                Log.d(TAG, "onCreateView: " + user.uid)
+            } else {
+                // User not logged in or has just logged out.
+            }
+        });*/
+
+        val user = FirebaseAuth.getInstance().currentUser
+
+        if (user != null) {
+            // User is signed in
+            BookModel = booking_model(args.packageDetail.package_id,args.packageDetail.name,args.packageDetail.price,null,user.phoneNumber.toString()
+            )
+            Log.d(TAG, "User Phone Number :- "+ user.phoneNumber)
+        } else {
+            // No user is signed in
+        }
         counttxt.setText("" +count)
 
         addbtn.setOnClickListener{
@@ -83,12 +113,27 @@ class tour_details_page : Fragment() {
         super.onStart()
 
         bookingbtn.setOnClickListener{
-            FirebaseFirestore.getInstance().collection("Booking").add(args.packageDetail)
+            FirebaseFirestore.getInstance().collection("Booking").add(BookModel)
                 .addOnSuccessListener {
-                    view?.let { it1 -> Snackbar.make(it1,"Success",Snackbar.LENGTH_LONG).show() }
+                    view?.let { it1 -> Snackbar.make(it1,"Success",Snackbar.LENGTH_LONG).show()
+
+                    }
                 }.addOnFailureListener{
                     view?.let { it1 -> Snackbar.make(it1,"booking fail",Snackbar.LENGTH_LONG).show() }
                 }
         }
     }
 }
+
+
+
+/*
+firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    // User logged in already or has just logged in.
+    console.log(user.uid);
+  } else {
+    // User not logged in or has just logged out.
+  }
+});
+ */

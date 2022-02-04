@@ -21,6 +21,13 @@ import java.util.concurrent.TimeUnit
 
 
 class register_page : Fragment() {
+    override fun onStart() {
+        super.onStart()
+
+        if(auth.currentUser!= null){
+            view?.findNavController()?.navigate(R.id.dashboard_page)
+        }
+    }
 
     private lateinit var auth: FirebaseAuth
     private var storedVerificationId: String? = ""
@@ -47,6 +54,7 @@ class register_page : Fragment() {
 
         val view : View = inflater.inflate(R.layout.fragment_register_page, container, false)
         auth = FirebaseAuth.getInstance()
+
 
     sign_intxt  = view.findViewById(R.id.Sign_in)
 

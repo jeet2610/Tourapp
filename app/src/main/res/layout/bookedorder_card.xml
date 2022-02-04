@@ -34,35 +34,23 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="10dp"
                 android:background="@drawable/topcard">
 
-
-                <TextView
-                    android:id="@+id/user_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="5dp"
-                    android:text="Mirage thakore"
-                    android:textColor="@color/black"
-                    android:textSize="18dp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/user_number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="16dp"
-                    android:text="+91 9999222555"
+                    android:layout_marginTop="5dp"
+                    android:text="+91 8488093696"
                     android:textColor="@color/black"
-                    android:textSize="15dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/user_name" />
+                    app:layout_constraintTop_toTopOf="parent" />
+
 
 
                 <TextView

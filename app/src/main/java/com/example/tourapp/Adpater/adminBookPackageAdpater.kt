@@ -26,7 +26,7 @@ class adminBookPackageAdpater(options: FirestoreRecyclerOptions<booking_model> )
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
         var pakcage_Card = itemView.findViewById<CardView>(R.id.package_card)
-        var u_name = itemView.findViewById<TextView>(R.id.user_name)
+
         var u_phone = itemView.findViewById<TextView>(R.id.user_number)
         var total = itemView.findViewById<TextView>(R.id.price)
         var bookded_pack_name = itemView.findViewById<TextView>(R.id.booked_package)
@@ -41,10 +41,10 @@ class adminBookPackageAdpater(options: FirestoreRecyclerOptions<booking_model> )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int, model: booking_model) {
 
-        holder.u_name?.text = model.u_name
+
         holder.total.text = model.price
         holder.bookded_pack_name.text  = model.name
-        holder.date.text = model.data
+        holder.date.text = model.date.toString()
         holder.u_phone.text = model.u_phone
 
 
