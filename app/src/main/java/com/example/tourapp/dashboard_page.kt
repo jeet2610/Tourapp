@@ -1,10 +1,15 @@
 package com.example.tourapp
 
+import android.content.ContentValues.TAG
+import android.content.DialogInterface
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
@@ -16,9 +21,11 @@ import com.example.tourapp.Adpater.packageAdpater
 import com.example.tourapp.Adpater.packageAdpaterVertical
 import com.example.tourapp.model.package_model
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import kotlin.math.log
 
 
 class dashboard_page : Fragment() ,onClick{
@@ -29,6 +36,7 @@ class dashboard_page : Fragment() ,onClick{
     lateinit var recyclerView: RecyclerView
     lateinit var recyclerViewVertical: RecyclerView
     lateinit var vm: ViewModel
+    lateinit var logoutBtn:ImageView
     private val db: FirebaseFirestore = FirebaseFirestore.getInstance();
     private val collectionReference: CollectionReference = db.collection("Products");
 
@@ -51,6 +59,7 @@ class dashboard_page : Fragment() ,onClick{
 
         recyclerView =view.findViewById(R.id.rcview1)
         recyclerViewVertical =view.findViewById(R.id.rcview2)
+        logoutBtn =view.findViewById(R.id.logoutbtn)
 
 
         return  view;
@@ -62,12 +71,44 @@ class dashboard_page : Fragment() ,onClick{
         super.onStart()
         adapter.startListening();
         adapterVertical.startListening()
+        logoutBtn.setOnClickListener{view->
+            Log.d(TAG, "onStop: CliCk logout")
+
+                val builder = AlertDialog.Builder(this.requireContext())
+
+                builder.apply {
+                    this.setTitle("Do you want to logout?")
+                    setPositiveButton("Cancel",
+                        DialogInterface.OnClickListener { dialog, id ->
+                            // User clicked OK button
+                        })
+                    setNegativeButton("Logout",
+                        DialogInterface.OnClickListener { dialog, id ->
+                            // User cancelled the dialog
+                            FirebaseAuth.getInstance().signOut()
+                            view.findNavController().navigate(R.id.home_page)
+                        })
+                }
+                // Set other dialog properties
+
+
+                // Create the AlertDialog
+            val alertDialog: AlertDialog = builder.create()
+            // Set other dialog properties
+            alertDialog.setCancelable(false)
+            alertDialog.show()
+
+        }
+
+
     }
 
     override fun onStop() {
         super.onStop()
         adapter.stopListening()
         adapterVertical.stopListening()
+
+
     }
 
 

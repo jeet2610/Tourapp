@@ -20,7 +20,7 @@ import com.google.firebase.firestore.Query
 
 
 class admin_page : Fragment() {
-    // TODO: Rename and change types of parameters
+
 
 
 
@@ -55,16 +55,24 @@ class admin_page : Fragment() {
 
     private fun setUpRecyclerView() {
 
-        val query: Query = FirebaseFirestore.getInstance().collection("booking")//.orderBy("product_name", Query.Direction.ASCENDING);
+        val query: Query = FirebaseFirestore.getInstance().collection("Booking")//.orderBy("product_name", Query.Direction.ASCENDING);
         val options = FirestoreRecyclerOptions.Builder<booking_model>()
             .setQuery(query, booking_model::class.java)
             .build();
 
         adapter = adminBookPackageAdpater(options)
-        booked_recycleview.layoutManager = LinearLayoutManager(activity, RecyclerView.HORIZONTAL,false)
+        booked_recycleview.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL,false)
         booked_recycleview.adapter = adapter;
 
     }
 
+    override fun onStart() {
+        super.onStart()
+        adapter.startListening()
+    }
 
+    override fun onStop() {
+        super.onStop()
+        adapter.stopListening()
+    }
 }

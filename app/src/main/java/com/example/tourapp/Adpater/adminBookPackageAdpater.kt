@@ -1,5 +1,6 @@
 package com.example.tourapp.Adpater
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,6 +32,8 @@ class adminBookPackageAdpater(options: FirestoreRecyclerOptions<booking_model> )
         var total = itemView.findViewById<TextView>(R.id.price)
         var bookded_pack_name = itemView.findViewById<TextView>(R.id.booked_package)
         var date = itemView.findViewById<TextView>(R.id.date)
+        var passengers = itemView.findViewById<TextView>(R.id.passengerNum)
+        var departure = itemView.findViewById<TextView>(R.id.departureDate)
 
     }
 
@@ -41,11 +44,13 @@ class adminBookPackageAdpater(options: FirestoreRecyclerOptions<booking_model> )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int, model: booking_model) {
 
-
+        Log.d("adapter", "onBindViewHolder: ${model.date?.toDate().toString()}")
         holder.total.text = model.price
         holder.bookded_pack_name.text  = model.name
-        holder.date.text = model.date.toString()
+        holder.date.text = "${model.date?.toDate()?.date}/${model.date?.toDate()?.month}/${model.date?.toDate()?.year}"
         holder.u_phone.text = model.u_phone
+        holder.passengers.text = "Passengers: ${model.passengers}"
+        holder.departure.text= "Departure: ${model.departure}"
 
 
     }

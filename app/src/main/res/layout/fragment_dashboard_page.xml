@@ -44,14 +44,15 @@ android:layout_height="match_parent"
 
 
     <ImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:id="@+id/logoutbtn"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:layout_marginTop="22dp"
         android:layout_marginEnd="22dp"
-        android:background="@drawable/otp_editbox"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:src="@mipmap/ic_launcher"/>
+        android:src="@drawable/ic_baseline_power_settings_new_24"/>
 
 
     <LinearLayout

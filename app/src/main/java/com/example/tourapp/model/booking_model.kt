@@ -10,7 +10,9 @@ data class booking_model(
     val name : String ="",
     val price :String= " ",
     @ServerTimestamp
-    val date : Timestamp?,
-    val u_phone : String = " "
+    val date : Timestamp?=null,
+    val u_phone : String = " ",
+    val passengers :String="",
+    val departure :String=""
 
 )

@@ -141,73 +141,129 @@
 
                     </androidx.cardview.widget.CardView>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Please select person count"
-                        android:textStyle="normal"
-                        android:textColor="@color/black"
-                        android:textSize="20dp"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="15dp"/>
-
 
                     <androidx.appcompat.widget.LinearLayoutCompat
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
+                        android:orientation="vertical"
                         android:layout_gravity="center"
+                        android:padding="10dp"
                         android:layout_marginTop="30dp"
                         android:paddingBottom="20dp"
                         >
 
+                  <TextView
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="Booking Details"/>
 
-                        <LinearLayout
-                            android:id="@+id/linearLayout2"
-                            android:layout_width="100dp"
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginTop="30dp"
-                            android:layout_marginEnd="15dp"
-                            android:padding="5dp"
-                            android:orientation="horizontal"
-                            android:background="@drawable/countershape"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/cart_image"
-                            app:layout_constraintTop_toTopOf="parent">
+                            android:layout_marginTop="15dp"
+                            >
 
                             <ImageView
-                                android:id="@+id/counterminus"
-                                android:layout_width="10dp"
-                                android:layout_height="match_parent"
-                                android:padding="5dp"
-                                android:layout_weight="1"
-                                android:src="@drawable/ic_baseline_remove_24" />
+                                android:id="@+id/imageView2"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_marginTop="2dp"
+                                android:layout_marginStart="10dp"
+                                android:src="@drawable/ic_baseline_people_24"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
 
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="14sp"
+                                    android:layout_marginStart="10dp"
+                                    android:text="Passengers" />
+
+                                <TextView
+                                    android:id="@+id/numberofpassengerTv"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="12dp"
+                                    android:text="0" />
+                            </LinearLayout>
 
                             <TextView
-                                android:id="@+id/countertext"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="2"
-                                android:text=""
-
-                                android:textAlignment="center"
+                                android:id="@+id/onPassengerChangeBtn"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Change"
+                                android:textSize="16sp"
                                 android:textColor="@color/black"
-                                android:textSize="15sp" />
+android:layout_marginEnd="10dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            >
 
                             <ImageView
-                                android:id="@+id/counteradd"
-                                android:layout_width="10dp"
-                                android:layout_height="match_parent"
-                                android:padding="5dp"
-                                android:layout_weight="1"
-                                android:src="@drawable/ic_baseline_add_24" />
+                                android:id="@+id/imageView3"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_marginTop="2dp"
+                                android:layout_marginStart="10dp"
+                                android:src="@drawable/ic_baseline_calendar_today_24"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
 
 
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
 
-                        </LinearLayout>
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toEndOf="@+id/imageView3"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="14sp"
+                           android:layout_marginStart="10dp"
+                                    android:text="Departure" />
+
+                                <TextView
+                                    android:id="@+id/departureDate"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="00/00/0000"
+                                    android:layout_marginStart="12dp"/>
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/onDateChangedBtn"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Change"
+                                android:textSize="16sp"
+                                android:textColor="@color/black"
+                                android:layout_marginEnd="10dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
 
