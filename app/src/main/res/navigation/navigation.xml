@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_home_page_to_register_page"
             app:destination="@id/register_page" />
+        <action
+            android:id="@+id/action_home_page_to_admin_page"
+            app:destination="@id/admin_page" />
     </fragment>
     <fragment
         android:id="@+id/register_page"
@@ -68,4 +71,9 @@
             android:name="packageDetail"
             app:argType="com.example.tourapp.model.package_model" />
     </fragment>
+    <fragment
+        android:id="@+id/admin_page"
+        android:name="com.example.tourapp.admin_page"
+        android:label="fragment_admin_page"
+        tools:layout="@layout/fragment_admin_page" />
 </navigation>

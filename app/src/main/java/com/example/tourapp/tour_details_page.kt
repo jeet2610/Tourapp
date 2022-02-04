@@ -24,6 +24,10 @@ class tour_details_page : Fragment() {
     lateinit var package_desTv:TextView
     lateinit var package_imageTv :ImageView
     lateinit var bookingbtn :Button
+    lateinit var  addbtn : ImageView
+    lateinit var  minbtn : ImageView
+    lateinit var  counttxt : TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -35,10 +39,33 @@ class tour_details_page : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_tour_details_page, container, false)
 
+          var count = 0
           package_desTv = view.findViewById(R.id.package_des)
           package_nameTv = view.findViewById(R.id.package_name)
         package_imageTv = view.findViewById(R.id.imageprofile)
         bookingbtn = view.findViewById(R.id.book_pack)
+        addbtn = view.findViewById(R.id.counteradd)
+        minbtn = view.findViewById(R.id.counterminus)
+        counttxt = view.findViewById(R.id.countertext)
+
+
+        counttxt.setText("" +count)
+
+        addbtn.setOnClickListener{
+
+            counttxt.setText(""+ ++count)
+
+
+        }
+
+        minbtn.setOnClickListener {
+
+            counttxt.setText(" "+ --count)
+
+        }
+
+
+
         return view
     }
 

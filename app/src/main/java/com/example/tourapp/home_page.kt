@@ -23,12 +23,17 @@ class home_page : Fragment() {
         val view : View = inflater.inflate(R.layout.fragment_home_page, container, false)
 
         val studentbtn : Button = view.findViewById(R.id.Student)
+        val adminbtn : Button = view.findViewById(R.id.admin_btn)
 
         studentbtn.setOnClickListener {
 
             it.findNavController().navigate(R.id.register_page)
         }
 
+        adminbtn.setOnClickListener {
+
+            it.findNavController().navigate(R.id.admin_page)
+        }
 
 
             return view
