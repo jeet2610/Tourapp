@@ -104,7 +104,7 @@ class tour_details_page : Fragment() {
             }
         }
 
-
+//
         bookingbtn.setOnClickListener {
             val user = FirebaseAuth.getInstance().currentUser
 
