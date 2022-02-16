@@ -153,16 +153,26 @@ class verification_page : Fragment() {
     }
 
     fun optsend(number :String){
+if(number.contentEquals("+91")){
+    val options = PhoneAuthOptions.newBuilder(mauth)
+        .setPhoneNumber(number)       // Phone number to verify
+        .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
+        .setActivity(this.requireActivity())                 // Activity (for callback binding)
+        .setCallbacks(mcallback)          // OnVerificationStateChangedCallbacks
+        .build()
+    PhoneAuthProvider.verifyPhoneNumber(options)
+}else{
+    val options = PhoneAuthOptions.newBuilder(mauth)
+        .setPhoneNumber("+91$number")       // Phone number to verify
+        .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
+        .setActivity(this.requireActivity())                 // Activity (for callback binding)
+        .setCallbacks(mcallback)          // OnVerificationStateChangedCallbacks
+        .build()
+    PhoneAuthProvider.verifyPhoneNumber(options)
+}
 
 
 
-        val options = PhoneAuthOptions.newBuilder(mauth)
-            .setPhoneNumber(number)       // Phone number to verify
-            .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
-            .setActivity(this.requireActivity())                 // Activity (for callback binding)
-            .setCallbacks(mcallback)          // OnVerificationStateChangedCallbacks
-            .build()
-        PhoneAuthProvider.verifyPhoneNumber(options)
 
 
     }
