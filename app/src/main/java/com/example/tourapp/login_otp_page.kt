@@ -63,37 +63,11 @@ class login_otp_page : Fragment() {
     }
     fun optsend(){
 
-        mcallback = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-
-            override fun onVerificationCompleted(credential: PhoneAuthCredential) {
-
+        val action = login_otp_pageDirections.actionLoginOtpPageToVerificationPage(ent_no.text.toString())
+        view?.findNavController()?.navigate(action)
 
 
-            }
 
-            override fun onVerificationFailed(e: FirebaseException) {
-                Log.d("otp faild","otp failderd")
-            }
-
-            override fun onCodeSent(
-                verificationId: String,
-                token: PhoneAuthProvider.ForceResendingToken
-            ) {
-
-                 val action = login_otp_pageDirections.actionLoginOtpPageToVerificationPage(ent_no.text.toString())
-                view?.findNavController()?.navigate(action)
-
-
-            }
-        }
-
-        val options = PhoneAuthOptions.newBuilder(mauth)
-            .setPhoneNumber(ent_no.text.toString())       // Phone number to verify
-            .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
-            .setActivity(this.requireActivity())                 // Activity (for callback binding)
-            .setCallbacks(mcallback)          // OnVerificationStateChangedCallbacks
-            .build()
-        PhoneAuthProvider.verifyPhoneNumber(options)
 
 
     }

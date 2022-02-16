@@ -157,7 +157,7 @@ class verification_page : Fragment() {
 
 
         val options = PhoneAuthOptions.newBuilder(mauth)
-            .setPhoneNumber("+91$number")       // Phone number to verify
+            .setPhoneNumber(number)       // Phone number to verify
             .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
             .setActivity(this.requireActivity())                 // Activity (for callback binding)
             .setCallbacks(mcallback)          // OnVerificationStateChangedCallbacks
