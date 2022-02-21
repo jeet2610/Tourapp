@@ -21,7 +21,8 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/round_shape">
+            android:background="@drawable/round_shape"
+            >
 
             <ImageView
                 android:id="@+id/package_img_vertical"
@@ -39,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:background="@drawable/ic_baseline_bookmarks_24"
+                android:background="@drawable/ic_baseline_star_24"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -48,6 +49,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="40dp"
+                android:layout_marginStart="20dp"
                 android:fontFamily="sans-serif"
                 android:text="Mirage Home"
                 android:textColor="@color/black"
@@ -66,7 +68,8 @@
                 android:textColor="@color/black"
                 android:textSize="15sp"
                 android:textStyle="normal"
-android:layout_marginTop="6dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginStart="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/package_name_vertical" />
 

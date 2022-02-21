@@ -3,6 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/jeets/AndroidStudioProjects/StudentTourApp/app/src/main/res/layout/bookedorder_card.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/jeets/AndroidStudioProjects/StudentTourApp/app/src/main/res/layout/fragment_dashboard_page.xml" value="0.15208333333333332" />
+        <entry key="..\:/Users/jeets/AndroidStudioProjects/StudentTourApp/app/src/main/res/layout/fragment_tour_details_page.xml" value="0.22" />
+        <entry key="..\:/Users/jeets/AndroidStudioProjects/StudentTourApp/app/src/main/res/layout/package_card.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/jeets/AndroidStudioProjects/StudentTourApp/app/src/main/res/layout/package_card_vertical.xml" value="0.20416666666666666" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/bookedorder_card.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_admin_page.xml" value="0.10572916666666667" />

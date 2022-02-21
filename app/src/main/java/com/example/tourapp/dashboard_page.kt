@@ -57,7 +57,7 @@ class dashboard_page : Fragment() ,onClick{
         val view :View = inflater.inflate(R.layout.fragment_dashboard_page, container, false)
 
 
-        recyclerView =view.findViewById(R.id.rcview1)
+   //     recyclerView =view.findViewById(R.id.rcview1)
         recyclerViewVertical =view.findViewById(R.id.rcview2)
         logoutBtn =view.findViewById(R.id.logoutbtn)
 
@@ -69,7 +69,7 @@ class dashboard_page : Fragment() ,onClick{
 
     override fun onStart() {
         super.onStart()
-        adapter.startListening();
+       // adapter.startListening();
         adapterVertical.startListening()
         logoutBtn.setOnClickListener{view->
             Log.d(TAG, "onStop: CliCk logout")
@@ -105,14 +105,14 @@ class dashboard_page : Fragment() ,onClick{
 
     override fun onStop() {
         super.onStop()
-        adapter.stopListening()
+      //  adapter.stopListening()
         adapterVertical.stopListening()
 
 
     }
 
 
-    fun setUpRecyclerView() {
+  /*  fun setUpRecyclerView() {
 
 
         val query: Query = FirebaseFirestore.getInstance().collection("tours")//.orderBy("product_name", Query.Direction.ASCENDING);
@@ -126,7 +126,7 @@ class dashboard_page : Fragment() ,onClick{
 
 
 
-    }
+    }*/
 
     fun setUpRecyclerViewVertical() {
 
@@ -147,7 +147,7 @@ class dashboard_page : Fragment() ,onClick{
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setUpRecyclerView()
+     //   setUpRecyclerView()
         setUpRecyclerViewVertical()
     }
 

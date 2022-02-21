@@ -2,154 +2,61 @@
 <ScrollView
 
     xmlns:android="http://schemas.android.com/apk/res/android"
-
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     tools:context=".dashboard_page">
+
+
 <androidx.constraintlayout.widget.ConstraintLayout
     android:background="@color/background_col"
     android:padding="13dp"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
- >
+    android:layout_margin="10dp">
 
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/ic_baseline_location_on_24"
-        android:backgroundTint="@color/black"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="43dp"
-        android:text="vadodara,Gujrat"
-        android:textColor="@color/black"
-        android:textSize="17sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="parent" />
 
 
     <ImageView
         android:id="@+id/logoutbtn"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:layout_marginTop="22dp"
-        android:layout_marginEnd="22dp"
+        android:layout_marginTop="50dp"
 
+        android:layout_marginEnd="22dp"
+        app:layout_constraintBottom_toTopOf="@id/OtherPackageTextview"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:src="@drawable/ic_baseline_power_settings_new_24"/>
 
 
-    <LinearLayout
-        android:id="@+id/linearLayout3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8">
 
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="10dp"
-            android:text="Travel"
-            android:textColor="@color/teal_700"
-            android:textSize="22sp"
-            android:textStyle="bold"
-
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="15dp"
-            android:text="Transport"
-            android:textColor="@color/teal_700"
-            android:textSize="22sp"
-            />
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="17dp"
-            android:layout_marginRight="15dp"
-            android:text="Place"
-            android:textColor="@color/teal_700"
-            android:textSize="22sp"
-
-
-            />
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hotel"
-            android:textColor="@color/teal_700"
-            android:textSize="22sp" />
-
-
-    </LinearLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rcview1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="38dp"
-        android:orientation="horizontal"
-        android:scrollbars="horizontal"
-
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/OtherPackageTextview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Other Packages"
+        android:text="Tour Packages"
         android:textSize="20sp"
+        android:layout_marginStart="20dp"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rcview1" />
+        app:layout_constraintTop_toBottomOf="@id/logoutbtn" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcview2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="13dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="12dp"
-
+       android:layout_margin="20dp"
         android:orientation="vertical"
         android:scrollbars="vertical"
-
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/OtherPackageTextview"
         tools:listitem="@layout/package_card_vertical" />
 
 

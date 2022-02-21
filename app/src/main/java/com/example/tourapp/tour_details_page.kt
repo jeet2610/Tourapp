@@ -20,6 +20,7 @@ import com.example.tourapp.viewmodel.razorpayViewModel
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
 import com.razorpay.Checkout
 import org.json.JSONObject
 import java.text.SimpleDateFormat
@@ -39,7 +40,10 @@ class tour_details_page : Fragment() {
     lateinit var departureDate: TextView
     lateinit var numberofpassengerTv: TextView
     lateinit var viewmodel:razorpayViewModel
+    lateinit var Product_rateTextView : TextView
     var cal = Calendar.getInstance()
+
+    lateinit var tourprice : TextView
 
     lateinit var auth: FirebaseAuth
 
@@ -65,19 +69,10 @@ class tour_details_page : Fragment() {
         ondatechangedbtn = view.findViewById(R.id.onDateChangedBtn)
         departureDate = view.findViewById(R.id.departureDate)
         numberofpassengerTv = view.findViewById(R.id.numberofpassengerTv)
+        tourprice = view.findViewById(R.id.tour_rate)
 
 
         auth = FirebaseAuth.getInstance()
-
-        /*firebase.auth().onAuthStateChanged((user) => {
-            if (user) {
-                // User logged in already or has just logged in.
-                Log.d(TAG, "onCreateView: " + user.uid)
-            } else {
-                // User not logged in or has just logged out.
-            }
-        });*/
-
 
 
         return view
@@ -91,6 +86,7 @@ class tour_details_page : Fragment() {
             .into(package_imageTv)
         package_nameTv.text = args.packageDetail.name
         package_desTv.text = args.packageDetail.disp
+        tourprice.text = args.packageDetail.price
 
 
     }
